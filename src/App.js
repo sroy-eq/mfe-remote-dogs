@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
   const [dogImg, setDogImg] = useState(null);
   const fetchDoggo = () => {
     setDogImg('');
-    fetch('https://dog.ceo/api/breeds/image/random')
+    const opts = {
+      headers: {
+        mode: 'no-cors'
+      }
+    }
+    fetch('http://localhost:8001/random_dog', opts)
       .then((res) => res.json())
       .then((dogInfo) => {
         setDogImg(dogInfo.message);
