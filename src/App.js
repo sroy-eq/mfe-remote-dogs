@@ -3,17 +3,15 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 const MFE_TOPIC = 'MFE Topic';
+const topicSubscriber = (msg, data) => {
+  console.log("Received message in dogs MFE");
+  console.log("msg: ", msg);
+  console.log("data: ", data);
+};
+PubSub.subscribe(MFE_TOPIC, topicSubscriber);
 
 function App() {
   const [dogImg, setDogImg] = useState(null);
-
-  const topicSubscriber = (msg, data) => {
-    console.log("Received message in dogs MFE");
-    console.log("msg: ", msg);
-    console.log("data: ", data);
-  };
-  PubSub.subscribe(MFE_TOPIC, topicSubscriber);
-
   const fetchDoggo = () => {
     setDogImg('');
     fetch('https://dog.ceo/api/breeds/image/random')
