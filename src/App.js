@@ -10,14 +10,6 @@ const topicSubscriber = (msg, data) => {
 };
 PubSub.subscribe(MFE_TOPIC, topicSubscriber);
 
-const topicSubscriber = (msg, data) => {
-  console.log("Received message in dogs MFE");
-  console.log("msg: ", msg);
-  console.log("data: ", data);
-};
-
-PubSub.subscribe(MFE_TOPIC, topicSubscriber);
-
 function App() {
   const [dogImg, setDogImg] = useState(null);
   const fetchDoggo = () => {
