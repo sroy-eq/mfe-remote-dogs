@@ -10,11 +10,24 @@ const topicSubscriber = (msg, data) => {
 };
 PubSub.subscribe(MFE_TOPIC, topicSubscriber);
 
+const topicSubscriber = (msg, data) => {
+  console.log("Received message in dogs MFE");
+  console.log("msg: ", msg);
+  console.log("data: ", data);
+};
+
+PubSub.subscribe(MFE_TOPIC, topicSubscriber);
+
 function App() {
   const [dogImg, setDogImg] = useState(null);
   const fetchDoggo = () => {
     setDogImg('');
-    fetch('https://dog.ceo/api/breeds/image/random')
+    const opts = {
+      headers: {
+        mode: 'no-cors'
+      }
+    }
+    fetch('http://localhost:8001/random_dog', opts)
       .then((res) => res.json())
       .then((dogInfo) => {
         setDogImg(dogInfo.message);
